@@ -1,0 +1,3 @@
+I am uploading my work on Apache Spark using Scala independently to understand every student's point of view. Although many students consider Apache Spark as one of the most complex tools to use with Scala programming, when I started working on it it became simple after learning all the fundamentals of Scala programming.
+
+All the files that I have uploaded here are my practice work with error-free, most of the code of lines are kept with comments because I executed many queries in the same file which does not make that complex instead of making multiple files for smaller execution queries. I hope you all like Apache Spark and become pros at working on company's real-time projects
