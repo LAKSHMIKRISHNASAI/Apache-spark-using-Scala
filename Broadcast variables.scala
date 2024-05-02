@@ -1,5 +1,13 @@
 //package src.main.scala
 //package myapp
+
+//broadcast variables are read-only variables that are cached within all the nodes to need tasks. Instead of sending all the data to the tasks,
+//spark broadcasts the variables to the tasks executed within the efficient broadcast algorithms. 
+// The running of SparkRDD and data frame jobs defined by using Spark broadcast means, spark makes the following tasks:
+      //1) Spark breaks the jobs into stages by the distributed partitions and actions are executed within the stages
+      // 2) Spark then breaks the stages into tasks
+      //3) Spark broadcasts the common data to the needed tasks within the stage.
+      // 4) The broadcasted data is cached in the serialized format and deserialized before executing the task.
 import org.apache.spark.sql.SparkSession
 object app3 {
   def main(args: Array[String]): Unit = {
@@ -10,7 +18,7 @@ object app3 {
 
     val countries= Map(("USA","UNITED STATES OF AMERICA"),("FL","FLORIDA"),("IND","INDIA"));
     val states=Map(("CA","CALIFORNIA"),("LA","LOSS ANGELS"),("NY","NEW YORK"),("DL","DELHI"));
-
+// 1st method
     val broadcastStates= spark.sparkContext.broadcast(states);
     val broadcastCountries= spark.sparkContext.broadcast(countries);
 
@@ -30,18 +38,12 @@ object app3 {
     })
     println(rdd2.collect().mkString("\n"));
 
-    //broadcast variables are read-only variables which are cached within all the nodes inorder to need of tasks. Instead of sending all the data to the tasks, the spark broadcast the variables to the tasks executed within the efficient
-    // broadcast algorithms. The running of SparkRDD and dataframe jobs defined by using Spark broadcast means, spark makes the following tasks:
-    //1) spark breaks the jobs into stages by the distributed partitions and actions are executed within the stages
-    // 2) spark then breaks the stages into tasks
-    //3) spark broadcast the common data to the needed tasks within the stage.
-    // 4) The broadcasted data is cached in the serialized format and deserialized after executing the task.
 
 
 
+// 2nd method
     val broadcaststates2= spark.sparkContext.broadcast(states)
     val broadcastcountires2= spark.sparkContext.broadcast(countries)
-
 
     val columns= Seq("firstname","lastname","country","state")
     import spark.sqlContext.implicits._
