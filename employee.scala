@@ -6,33 +6,37 @@ object employee {
   case class student(name:String,college:String)
   case class employee(key:String, fname:String, lname: String, dept:String,address:String,city:String,state:String)
   def main(args:Array[String]):Unit={
-//    val data = Seq(employee("1","andrew","thomas","R&D","ameerpet","hyderabad","telangana"),
-//      employee("2","john","schwez","CS","begampet","hyderabad","telangana"),
-//      employee("3","annie","rose","Product development","nizampet","hyderabad","telangana"),
-//      employee("4","tom","crusie","R&D","banjara hills","secundrabad","telangana"),
-//      employee("5","ammie","jackson","customer support","nizampet","hyderabad","telangana"))
+    // defining employee data
+   val data = Seq(employee("1","andrew","thomas","R&D","ameerpet","hyderabad","telangana"),
+     employee("2","john","schwez","CS","begampet","hyderabad","telangana"),
+     employee("3","annie","rose","Product development","nizampet","hyderabad","telangana"),
+     employee("4","tom","crusie","R&D","banjara hills","secundrabad","telangana"),
+     employee("5","ammie","jackson","customer support","nizampet","hyderabad","telangana"))
     val spark= SparkSession.builder().appName("prediction").master("local[2]").getOrCreate()
     setActiveSession(spark)
-//    val df=spark.createDataFrame(spark.sparkContext.parallelize(data))
-//    import org.apache.spark.sql.functions.col
-//    df.select(col("fname"),col("lname"),col("dept"),col("address"),col("city")).filter(col("address")==="nizampet" && df("city")==="hyderabad").as("condition").show()
-//    df.createOrReplaceTempView("emp")
-//    df.select(col("fname"),col("lname"),col("dept"),col("city")).filter(col("dept")==="R&D").show()
-//    df.sqlContext.sql("""select city,count(dept) as dept_count from emp group by city""").show()
-////    df.show()
-//    import org.apache.spark.rdd.RDD
-//    def stockparse(s1:String):student={
-//      val line= s1.split(" ")
-//       student(line(0),line(1))
-//    }
-//
-//    def parserdd(rdd:RDD[String]):RDD[student]={
-//      val header= rdd.first()
-//      rdd.filter(_(0)!=header(0)).map(stockparse)
-//    }
-//    val stream=spark.readStream.format("console").option("host","localhost").option("port",4040).load()
-//    stream.show()
-//
+   val df=spark.createDataFrame(spark.sparkContext.parallelize(data))
+   import org.apache.spark.sql.functions.col
+   df.select(col("fname"),col("lname"),col("dept"),col("address"),col("city")).filter(col("address")==="nizampet" && df("city")==="hyderabad").as("condition").show()
+   df.createOrReplaceTempView("emp")
+   df.select(col("fname"),col("lname"),col("dept"),col("city")).filter(col("dept")==="R&D").show()
+   df.sqlContext.sql("""select city,count(dept) as dept_count from emp group by city""").show()
+   df.show()
+
+
+    
+   // import org.apache.spark.rdd.RDD
+   // def stockparse(s1:String):student={
+   //   val line= s1.split(" ")
+   //    student(line(0),line(1))
+   // }
+
+   // def parserdd(rdd:RDD[String]):RDD[student]={
+   //   val header= rdd.first()
+   //   rdd.filter(_(0)!=header(0)).map(stockparse)
+   // }
+   // val stream=spark.readStream.format("console").option("host","localhost").option("port",4040).load()
+   // stream.show()
+
 //    val rdd= spark.read.option("header",true).option("inferSchema",true).csv("D://new_downloads//Fake.csv//Fake.csv");
 
 //    case class stock(id:Integer,review:String,liked:Integer,overview:String)
@@ -47,19 +51,19 @@ object employee {
 //      val header= rdd.first
 //      rdd.filter(_(0)!=header(0)).map(parseStock).cache()
 //    }
-    import org.apache.spark.rdd.RDD
+    // import org.apache.spark.rdd.RDD
 //    val splitting=(str:RDD[String])=>{
 //      val line= str.first()
 //      (line(1)).toUpper
 //    }
-    import spark.implicits._
-//    val rdd3=parseRdd(spark.sparkContext.textFile("D:/new_downloads/restaurant_analysis.csv"))
-//    rdd3.collect().foreach(println)
-//    val rdd2=spark.read.option("header",true).csv("D:/new_downloads/restaurant_analysis.csv")
-//    rdd2.show()
-//    splitting(rdd2).
-//    rdd2.collect().foreach(println)
-//        case class employees()
+   //  import spark.implicits._
+   // val rdd3=parseRdd(spark.sparkContext.textFile("D:/new_downloads/restaurant_analysis.csv"))
+   // rdd3.collect().foreach(println)
+   // val rdd2=spark.read.option("header",true).csv("D:/new_downloads/restaurant_analysis.csv")
+   // rdd2.show()
+   // splitting(rdd2).
+   // rdd2.collect().foreach(println)
+   //     case class employees()
 
 //
 //    val structureData = Seq(
@@ -80,6 +84,10 @@ object employee {
 //      )
 //
 //    val df= spark.createDataFrame(spark.sparkContext.parallelize(structureData),schema)
+
+
+
+    
     val data= Seq(
       Row("james","cameron",List(Row("Newyork","NY"),Row("brooklyn","NY")),Map("hair"->"black","eye"->"brown"),Map("height"->"5.9")),
     Row("johny","depp",List(Row("Sanjose","CA"),Row("Sandigo","CA")),Map("hair"->"brown","eye"->"black"),Map("height"->"5.8")),
