@@ -88,7 +88,7 @@ object employee {
 
 
 
-    
+    // MAP FUNCTIONS NEW EXAMPLE
     val data= Seq(
       Row("james","cameron",List(Row("Newyork","NY"),Row("brooklyn","NY")),Map("hair"->"black","eye"->"brown"),Map("height"->"5.9")),
     Row("johny","depp",List(Row("Sanjose","CA"),Row("Sandigo","CA")),Map("hair"->"brown","eye"->"black"),Map("height"->"5.8")),
