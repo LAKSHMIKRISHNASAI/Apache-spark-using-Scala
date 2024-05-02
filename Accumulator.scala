@@ -1,6 +1,6 @@
  import org.apache.spark.util.LongAccumulator
   import org.apache.spark.util.{CollectionAccumulator,DoubleAccumulator}
-  val spark= SparkSession.builder().appName('accumulator').master('local[2]').getOrCreate()
+  val spark= SparkSession.builder().appName("accumulator").master("local[2]").getOrCreate()
    val accum=spark.sparkContext.longAccumulator("sumAccumulator")
    val rdd= spark.sparkContext.parallelize(Array(12,14,16,18,20,22,24,26,28,30 ))
    def longaccum:(Int,Int)=>Int= (acc1:Int,acc2:Int)=>acc1+acc2;
