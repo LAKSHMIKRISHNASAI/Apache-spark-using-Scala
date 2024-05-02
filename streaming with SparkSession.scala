@@ -1,4 +1,5 @@
-
+import org.apache.spark.streaming
+import org.apache.spark.streaming._
 import org.apache.spark.sql.SparkSession
 import org.apache.spark.streaming.Durations.seconds
 object streaming {
