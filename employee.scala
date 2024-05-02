@@ -24,46 +24,47 @@ object employee {
 
 
     
-   // import org.apache.spark.rdd.RDD
-   // def stockparse(s1:String):student={
-   //   val line= s1.split(" ")
-   //    student(line(0),line(1))
-   // }
+   import org.apache.spark.rdd.RDD
+   def stockparse(s1:String):student={
+     val line= s1.split(" ")
+      student(line(0),line(1))
+   }
 
-   // def parserdd(rdd:RDD[String]):RDD[student]={
-   //   val header= rdd.first()
-   //   rdd.filter(_(0)!=header(0)).map(stockparse)
-   // }
-   // val stream=spark.readStream.format("console").option("host","localhost").option("port",4040).load()
-   // stream.show()
+   def parserdd(rdd:RDD[String]):RDD[student]={
+     val header= rdd.first()
+     rdd.filter(_(0)!=header(0)).map(stockparse)
+   }
+   val stream=spark.readStream.format("console").option("host","localhost").option("port",4040).load()
+   stream.show()
 
-//    val rdd= spark.read.option("header",true).option("inferSchema",true).csv("D://new_downloads//Fake.csv//Fake.csv");
+    
+   val rdd= spark.read.option("header",true).option("inferSchema",true).csv("D://new_downloads//Fake.csv//Fake.csv");
 
-//    case class stock(id:Integer,review:String,liked:Integer,overview:String)
-//    rdd.show();
-//    def parseStock(str:String):stock={
-//      val line= str.split(" ")
-//      stock(line(0).toInt,line(1),line(2).toInt,line(3))
-//    }
-////    parseStock()
-//    import org.apache.spark.rdd.RDD
-//    def parseRdd(rdd:RDD[String]):RDD[stock]={
-//      val header= rdd.first
-//      rdd.filter(_(0)!=header(0)).map(parseStock).cache()
-//    }
-    // import org.apache.spark.rdd.RDD
-//    val splitting=(str:RDD[String])=>{
-//      val line= str.first()
-//      (line(1)).toUpper
-//    }
-   //  import spark.implicits._
-   // val rdd3=parseRdd(spark.sparkContext.textFile("D:/new_downloads/restaurant_analysis.csv"))
-   // rdd3.collect().foreach(println)
-   // val rdd2=spark.read.option("header",true).csv("D:/new_downloads/restaurant_analysis.csv")
-   // rdd2.show()
-   // splitting(rdd2).
-   // rdd2.collect().foreach(println)
-   //     case class employees()
+   case class stock(id:Integer,review:String,liked:Integer,overview:String)
+   rdd.show();
+   def parseStock(str:String):stock={
+     val line= str.split(" ")
+     stock(line(0).toInt,line(1),line(2).toInt,line(3))
+   }
+//    parseStock()
+   import org.apache.spark.rdd.RDD
+   def parseRdd(rdd:RDD[String]):RDD[stock]={
+     val header= rdd.first
+     rdd.filter(_(0)!=header(0)).map(parseStock).cache()
+   }
+    import org.apache.spark.rdd.RDD
+   val splitting=(str:RDD[String])=>{
+     val line= str.first()
+     (line(1)).toUpper
+   }
+    import spark.implicits._
+   val rdd3=parseRdd(spark.sparkContext.textFile("D:/new_downloads/restaurant_analysis.csv"))
+   rdd3.collect().foreach(println)
+   val rdd2=spark.read.option("header",true).csv("D:/new_downloads/restaurant_analysis.csv")
+   rdd2.show()
+   splitting(rdd2).
+   rdd2.collect().foreach(println)
+       // case class employees()
 
 //
 //    val structureData = Seq(
