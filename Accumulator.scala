@@ -1,4 +1,5 @@
- import org.apache.spark.util.LongAccumulator
+import org.apache.spark.sql.SparkSession
+import org.apache.spark.util.LongAccumulator
   import org.apache.spark.util.{CollectionAccumulator,DoubleAccumulator}
   val spark= SparkSession.builder().appName("accumulator").master("local[2]").getOrCreate()
    val accum=spark.sparkContext.longAccumulator("sumAccumulator")
