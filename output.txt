@@ -1,0 +1,4 @@
+mahendra 150000
+rajesh 120000
+kiran 240000
+seshu 150000
