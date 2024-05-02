@@ -7,45 +7,47 @@ object columns {
   def main(args:Array[String]):Unit={
     val spark= SparkSession.builder().appName("columns").master("local[*]").getOrCreate()
 
-//    val data= Seq(("olivia","morris","1995,28,F",1200000),
-//      ("john","abraham","1982,44,M",25000000),
-//      ("jr","ntr","1985,38,M",40000000),
-//      ("ram","charan","1986,37,M",60000000),
-//      ("alia","bhat","1992,32,F",20000000))
-//    data.collect().foreach(println)
-//    val schema= new StructType().add("name", new StructType().add("firstname",StringType).add("lastname",StringType))
-//      .add("year",StringType)
-//      .add("age",IntegerType)
-//      .add("gender",StringType)
-//      .add("salary",IntegerType)
-//    val col= Seq("fname","lname","bio","salary")
-//    import spark.implicits._
-//    val df=spark.createDataFrame(data).toDF(col:_*)
+   val data= Seq(("olivia","morris","1995,28,F",1200000),
+     ("john","abraham","1982,44,M",25000000),
+     ("jr","ntr","1985,38,M",40000000),
+     ("ram","charan","1986,37,M",60000000),
+     ("alia","bhat","1992,32,F",20000000))
+   data.collect().foreach(println)
+   val schema= new StructType().add("name", new StructType().add("firstname",StringType).add("lastname",StringType))
+     .add("year",StringType)
+     .add("age",IntegerType)
+     .add("gender",StringType)
+     .add("salary",IntegerType)
+   val col= Seq("fname","lname","bio","salary")
+   import spark.implicits._
+   val df=spark.createDataFrame(data).toDF(col:_*)
 //
-//    val newdf=df.map(f=>{
-//      val biosplit=f.getAs[String](2).split(",")
-//      val fname=f.getAs[String](0)
-//      val lname=f.getAs[String](1)
-//      val salary=f.getAs[Integer](3)
-//      (fname,lname,biosplit(0),biosplit(1),biosplit(2),salary)
-//    })
-//
-//   val df3= newdf.toDF("First name","surname","year","Age","Gender","salary")
-//    df3.show()
-//    df3.withColumn("country",lit("Australia")).show()
-//    df3.withColumn("Fullname",concat(df3("First name"),lit(" "),df3("surname"))).show()
-//    newdf.toDF("First name","surname","year","Age","Gender","salary").withColumn("Fullname",concat(col("First name
-//    )))
-//    newdf.show()
-//    df.collect().foreach(println)
-//    df.show()
-//
-//    df.withColumn("salary",col("salary")*10).show()
-//    df.withColumnRenamed("name","Actor Name")
-//    df.withColumn("year",df("year").cast(IntegerType))
-//    df.withColumn("country",lit("USA"))
-//    df.withColumnsRenamed(("year","DOB"),("gender","Gender"))
+   val newdf=df.map(f=>{
+     val biosplit=f.getAs[String](2).split(",")
+     val fname=f.getAs[String](0)
+     val lname=f.getAs[String](1)
+     val salary=f.getAs[Integer](3)
+     (fname,lname,biosplit(0),biosplit(1),biosplit(2),salary)
+   })
+  val df3= newdf.toDF("First name","surname","year","Age","Gender","salary")
+   df3.show()
+   df3.withColumn("country",lit("Australia")).show()
+   df3.withColumn("Fullname",concat(df3("First name"),lit(" "),df3("surname"))).show()
+   newdf.toDF("First name","surname","year","Age","Gender","salary").withColumn("Fullname",concat(col("First name"
+   )))
+   newdf.show()
+   df.collect().foreach(println)
+   df.show()
+//OPERATIONS
+    
+   // df.withColumn("salary",col("salary")*10).show()
+   // df.withColumnRenamed("name","Actor Name")
+   // df.withColumn("year",df("year").cast(IntegerType))
+   // df.withColumn("country",lit("USA"))
+   // df.withColumnsRenamed(("year","DOB"),("gender","Gender"))
 
+
+    
 //    val columns= Seq("name","address")
 //    val data2= Seq(("robert,smith","1 main road, newark, NJ,923347"),("john, andrews","3456 walnut road, newark,NJ, 94732"))
 
